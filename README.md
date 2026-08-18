@@ -53,12 +53,13 @@ flowchart TB
     end
 ```
 
-The frontend never talks to Playwright or the discovery model. The API owns all execution authority. Root `/api` is only the Vercel adapter. Canonical discovery is provider-independent: any supported genuine LLM (Gemini, OpenAI, or a capable local model) can produce a capability artifact; replay of that artifact uses zero LLM decisions. Demo SauceDemo credentials are invocation inputs for the take-home only; production session secrets belong on `ApplicationProfile.bootstrapSession`, not the business input contract.
+The frontend never talks to Playwright or the discovery model. The API owns all execution authority. Root `/api` is only the generated Vercel catch-all; `vercel-adapter.ts` is the source. Canonical discovery is provider-independent: any supported genuine LLM (Gemini, OpenAI, or a capable local model) can produce a capability artifact; replay of that artifact uses zero LLM decisions. Demo SauceDemo credentials are invocation inputs for the take-home only; production session secrets belong on `ApplicationProfile.bootstrapSession`, not the business input contract.
 
 ## Workspace structure
 
 ```text
-/api                      Vercel deployment adapter only
+/vercel-adapter.ts        Vercel serverless source (bundled at build)
+/api                      Generated Vercel catch-all only
 /apps/api                 Actual control-plane / execution API application
 /apps/web                 React control plane
 /packages/contracts       Shared serializable schemas/contracts

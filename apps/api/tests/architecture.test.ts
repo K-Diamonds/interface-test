@@ -440,7 +440,7 @@ describe("hosted catalog isolation", () => {
 describe("Vercel deployment adapter", () => {
   it("root /api is a thin adapter with no business logic", () => {
     const adapter = readFileSync(
-      path.resolve(process.cwd(), "../../api/adapter.ts"),
+      path.resolve(process.cwd(), "../../vercel-adapter.ts"),
       "utf8",
     );
     expect(adapter).toMatch(/vercel-entry/);
@@ -464,9 +464,9 @@ describe("Vercel deployment adapter", () => {
     const files = execSync("git ls-files", { cwd: repo, encoding: "utf8" })
       .split("\n")
       .filter(Boolean);
-    expect(files).toContain("api/adapter.ts");
+    expect(files).toContain("vercel-adapter.ts");
     const adapter = readFileSync(
-      path.resolve(process.cwd(), "../../api/adapter.ts"),
+      path.resolve(process.cwd(), "../../vercel-adapter.ts"),
       "utf8",
     );
     expect(adapter).not.toMatch(/Service Unavailable|503/);

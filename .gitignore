@@ -39,7 +39,7 @@ playwright-report/
 blob-report/
 test-results/
 
-# Generated Vercel serverless bundle (source: api/adapter.ts; regenerate: node vercel-build.mjs)
+# Generated Vercel serverless bundle (source: vercel-adapter.ts; regenerate: node vercel-build.mjs)
 api/\[...path\].js
 
 # Submission archive produced by `git archive`
