@@ -60,6 +60,10 @@ jobs:
         run: |
           mkdir -p .vercel
           printf '{"orgId":"%s","projectId":"%s"}\n' "$VERCEL_ORG_ID" "$VERCEL_PROJECT_ID" > .vercel/project.json
+      # vercel.json functions.api/[...path].js must exist in the upload.
+      # The bundle is gitignored; generate it here so CLI validation passes.
+      - name: Generate Vercel function bundle
+        run: node vercel-build.mjs
       - name: Deploy production
         run: |
           url=$(vercel deploy --prod --yes --token="$VERCEL_TOKEN")
