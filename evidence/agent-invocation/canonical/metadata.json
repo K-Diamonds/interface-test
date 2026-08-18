@@ -1,0 +1,8 @@
+{
+  "capabilityId": "session.dismiss-interstitial",
+  "capabilityVersion": 1,
+  "runId": "run_9274b277d2b9",
+  "llmDecisionCount": 0,
+  "path": "POST /api/agent/capabilities/:id/versions/:version/invoke",
+  "target": "local-fixture"
+}

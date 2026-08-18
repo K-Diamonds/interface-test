@@ -1,0 +1,2 @@
+{"timestamp":"2026-08-16T20:32:57.688Z","runId":"run_6fa0e15bffbf","mode":"discovery","event":"intervention.requested","summary":"Simulated ambiguous control — transferring to human","actor":"system"}
+{"timestamp":"2026-08-16T20:32:57.808Z","runId":"run_6fa0e15bffbf","mode":"discovery","event":"intervention.resumed","actor":"human"}

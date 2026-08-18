@@ -1,0 +1,46 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/interfaces/cli/serve.ts",
+    "serve": "tsx src/interfaces/cli/serve.ts",
+    "discover": "tsx src/interfaces/cli/discover.ts",
+    "replay": "tsx src/interfaces/cli/replay.ts",
+    "evidence:canonical": "tsx src/interfaces/cli/evidence-canonical.ts",
+    "evidence:recovery": "tsx src/interfaces/cli/evidence-recovery.ts",
+    "evidence:agent-invoke": "tsx src/interfaces/cli/evidence-agent-invoke.ts",
+    "demo": "tsx src/interfaces/cli/demo.ts",
+    "demo:offline": "tsx src/interfaces/cli/demo.ts --offline",
+    "operator": "tsx src/interfaces/cli/operator.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@browserbasehq/sdk": "^2.18.0",
+    "@cu/contracts": "workspace:*",
+    "@vercel/blob": "^2.8.0",
+    "@vercel/functions": "^3.9.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "openai": "^4.86.2",
+    "playwright": "^1.62.1",
+    "playwright-core": "^1.62.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.20.1",
+    "eslint": "^9.22.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0",
+    "vitest": "^3.0.8"
+  }
+}

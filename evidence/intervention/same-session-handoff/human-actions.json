@@ -1,0 +1,22 @@
+[
+  {
+    "actor": "human",
+    "timestamp": "2026-08-16T20:32:57.690Z",
+    "action": "type",
+    "target": "Username",
+    "value": "[REDACTED]"
+  },
+  {
+    "actor": "human",
+    "timestamp": "2026-08-16T20:32:57.718Z",
+    "action": "type",
+    "target": "Password",
+    "value": "[REDACTED]"
+  },
+  {
+    "actor": "human",
+    "timestamp": "2026-08-16T20:32:57.755Z",
+    "action": "click",
+    "target": "Login"
+  }
+]

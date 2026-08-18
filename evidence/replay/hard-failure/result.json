@@ -1,0 +1,38 @@
+{
+  "status": "failure",
+  "runId": "run_7f44b09585a3",
+  "capabilityId": "cart.add-product.hardfail",
+  "capabilityVersion": 1,
+  "failure": {
+    "category": "checkpoint_failed",
+    "code": "CHECKPOINT_FAILED",
+    "message": "Could not read element for text checkpoint: Nonexistent banner",
+    "stepId": "expect-impossible",
+    "expected": "THIS_CHECKPOINT_SHOULD_FAIL",
+    "observed": "No matches for {\"kind\":\"text\",\"text\":\"THIS_CHECKPOINT_SHOULD_FAIL\"}",
+    "recoverable": false,
+    "url": "https://www.saucedemo.com/",
+    "timestamp": "2026-08-16T20:32:56.568Z"
+  },
+  "evidence": [
+    {
+      "kind": "log",
+      "path": "evidence/replay/run_7f44b09585a3/events.jsonl"
+    },
+    {
+      "kind": "screenshot",
+      "path": "evidence/replay/run_7f44b09585a3/start.png",
+      "label": "start.png"
+    },
+    {
+      "kind": "screenshot",
+      "path": "evidence/replay/run_7f44b09585a3/failure.png",
+      "label": "failure.png"
+    },
+    {
+      "kind": "screenshot",
+      "path": "evidence/failures/run_7f44b09585a3/failure.png",
+      "label": "failure.png"
+    }
+  ]
+}

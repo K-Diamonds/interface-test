@@ -1,0 +1,14 @@
+{"timestamp":"2026-08-18T04:22:33.648Z","runId":"run_b8732ef2949a","mode":"replay","event":"run.started","summary":"Replay session.dismiss-interstitial@v1","actor":"automation","llmDecisionCount":0,"capabilityId":"session.dismiss-interstitial","capabilityVersion":1,"discoveredFromRunId":"fixture"}
+{"timestamp":"2026-08-18T04:22:33.701Z","runId":"run_b8732ef2949a","mode":"replay","event":"step.attempt","stepId":"open","action":"navigate","attempt":1,"summary":"Open the batch form","idempotency":"idempotent","effect":"navigation"}
+{"timestamp":"2026-08-18T04:22:33.722Z","runId":"run_b8732ef2949a","mode":"replay","event":"step.completed","stepId":"open","action":"navigate","durationMs":39,"actor":"automation"}
+{"timestamp":"2026-08-18T04:22:33.723Z","runId":"run_b8732ef2949a","mode":"replay","event":"checkpoint.satisfied","stepId":"open"}
+{"timestamp":"2026-08-18T04:22:33.734Z","runId":"run_b8732ef2949a","mode":"replay","event":"exceptional_state.detected","stepId":"complete","signal":"known_interstitial","summary":"Scheduled maintenance"}
+{"timestamp":"2026-08-18T04:22:33.763Z","runId":"run_b8732ef2949a","mode":"replay","event":"recovery.started","ruleId":"dismiss-session-notice","when":"known_interstitial","action":"dismiss-dialog","attempt":1}
+{"timestamp":"2026-08-18T04:22:33.764Z","runId":"run_b8732ef2949a","mode":"replay","event":"recovery.action","ruleId":"dismiss-session-notice","policy":"allow"}
+{"timestamp":"2026-08-18T04:22:33.764Z","runId":"run_b8732ef2949a","mode":"replay","event":"policy.allowed","ruleId":"dismiss-session-notice","action":"click"}
+{"timestamp":"2026-08-18T04:22:33.788Z","runId":"run_b8732ef2949a","mode":"replay","event":"recovery.action_executed","ruleId":"dismiss-session-notice","action":"click","target":"Continue to application"}
+{"timestamp":"2026-08-18T04:22:33.788Z","runId":"run_b8732ef2949a","mode":"replay","event":"recovery.completed","ruleId":"dismiss-session-notice","action":"dismiss-dialog"}
+{"timestamp":"2026-08-18T04:22:33.829Z","runId":"run_b8732ef2949a","mode":"replay","event":"step.attempt","stepId":"complete","action":"click","attempt":1,"summary":"Complete the batch task","idempotency":"idempotent","effect":"reversible-mutation"}
+{"timestamp":"2026-08-18T04:22:33.844Z","runId":"run_b8732ef2949a","mode":"replay","event":"step.completed","stepId":"complete","action":"click","target":"Complete task","durationMs":121,"actor":"automation"}
+{"timestamp":"2026-08-18T04:22:33.844Z","runId":"run_b8732ef2949a","mode":"replay","event":"checkpoint.satisfied","stepId":"complete"}
+{"timestamp":"2026-08-18T04:22:33.870Z","runId":"run_b8732ef2949a","mode":"replay","event":"run.completed","actor":"automation"}

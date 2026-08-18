@@ -1,0 +1,26 @@
+{
+  "status": "business_outcome",
+  "runId": "run_28116bf85125",
+  "capabilityId": "cart.add-product",
+  "capabilityVersion": 2,
+  "outcome": {
+    "code": "PRODUCT_NOT_FOUND",
+    "message": "No product matched the requested product name."
+  },
+  "evidence": [
+    {
+      "kind": "log",
+      "path": "evidence/replay/run_28116bf85125/events.jsonl"
+    },
+    {
+      "kind": "screenshot",
+      "path": "evidence/replay/run_28116bf85125/start.png",
+      "label": "start.png"
+    },
+    {
+      "kind": "screenshot",
+      "path": "evidence/replay/run_28116bf85125/outcome.png",
+      "label": "outcome.png"
+    }
+  ]
+}

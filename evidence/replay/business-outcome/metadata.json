@@ -1,0 +1,18 @@
+{
+  "mode": "replay",
+  "llmDecisionCount": 0,
+  "discoveryRunId": "run_0ff1e4fec530",
+  "replayRunId": "run_222491fd300e",
+  "capabilityId": "cart.add-product",
+  "capabilityVersion": 2,
+  "status": "business_outcome",
+  "outcome": {
+    "code": "PRODUCT_NOT_FOUND",
+    "message": "No product matched the requested product name.",
+    "data": {
+      "productName": "PRODUCT THAT DOES NOT EXIST",
+      "username": "standard_user",
+      "password": "[REDACTED]"
+    }
+  }
+}

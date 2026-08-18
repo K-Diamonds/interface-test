@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0",
+  "capability": {
+    "id": "cart.add-product.hardfail",
+    "name": "Hard failure fixture",
+    "description": "Intentionally broken checkpoint for hard-failure evidence",
+    "version": 1,
+    "status": "draft"
+  },
+  "compatibility": {
+    "appId": "saucedemo",
+    "appFamily": "saucedemo-web",
+    "targetPatterns": ["https://www.saucedemo.com/**"]
+  },
+  "contract": {
+    "inputs": [
+      {
+        "name": "username",
+        "type": "string",
+        "required": true,
+        "description": "username"
+      },
+      {
+        "name": "password",
+        "type": "string",
+        "required": true,
+        "description": "password",
+        "sensitive": true
+      }
+    ],
+    "outputs": [
+      {
+        "name": "ok",
+        "type": "boolean",
+        "description": "unused"
+      }
+    ]
+  },
+  "policy": {
+    "allowedDomains": ["www.saucedemo.com", "saucedemo.com"],
+    "allowedActions": ["navigate", "type", "click", "checkpoint"],
+    "riskyActionPolicy": "require-human"
+  },
+  "steps": [
+    {
+      "id": "open",
+      "type": "navigate",
+      "description": "Open app",
+      "url": "https://www.saucedemo.com/"
+    },
+    {
+      "id": "expect-impossible",
+      "type": "checkpoint",
+      "description": "Expect a control that does not exist",
+      "check": {
+        "type": "element-text",
+        "target": {
+          "description": "Nonexistent banner",
+          "primary": { "kind": "text", "text": "THIS_CHECKPOINT_SHOULD_FAIL" },
+          "fallbacks": []
+        },
+        "expected": "THIS_CHECKPOINT_SHOULD_FAIL"
+      }
+    }
+  ],
+  "successCondition": {
+    "type": "url",
+    "pattern": "never-matches-zzz"
+  },
+  "knownOutcomes": [],
+  "metadata": {
+    "createdAt": "2026-08-16T00:00:00.000Z",
+    "discoveredFromRunId": "run_hardfail_seed",
+    "generatorVersion": "1.0.0"
+  }
+}

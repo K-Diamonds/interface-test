@@ -1,0 +1,101 @@
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+apps/*/dist/
+coverage/
+.vite/
+**/.vite/
+.vercel
+*.tsbuildinfo
+
+# Local secrets — never commit. Placeholders live in .env.example.
+.env
+**/.env
+.env.*
+!**/.env.example
+!.env.example
+.env.local
+**/.env.local
+
+*.log
+logs/
+
+# OS / archive junk
+.DS_Store
+**/.DS_Store
+._*
+**/._*
+__MACOSX/
+Thumbs.db
+**/Thumbs.db
+
+# Editor / AI-tool metadata
+.cursor/
+.git/cursor/
+
+# Playwright / Vitest reports
+playwright-report/
+blob-report/
+test-results/
+
+# Generated Vercel serverless bundle (source: api/adapter.ts; regenerate: node vercel-build.mjs)
+api/\[...path\].js
+
+# Submission archive produced by `git archive`
+interface-submission.zip
+
+# Accidental evidence trees under apps/
+apps/api/evidence/
+apps/evidence/
+
+# Mutable runtime evidence. Canonical named folders stay tracked via negation.
+evidence/discovery/*
+!evidence/discovery/canonical-llm-run/
+!evidence/discovery/canonical-llm-run/**
+
+evidence/replay/*
+!evidence/replay/canonical-success/
+!evidence/replay/canonical-success/**
+!evidence/replay/canonical-alt-product/
+!evidence/replay/canonical-alt-product/**
+!evidence/replay/business-outcome/
+!evidence/replay/business-outcome/**
+!evidence/replay/recoverable-condition/
+!evidence/replay/recoverable-condition/**
+!evidence/replay/hard-failure/
+!evidence/replay/hard-failure/**
+
+evidence/failures/
+
+evidence/offline-demo/*
+!evidence/offline-demo/scripted-discovery/
+!evidence/offline-demo/scripted-discovery/**
+
+evidence/agent-invocation/*
+!evidence/agent-invocation/canonical/
+!evidence/agent-invocation/canonical/**
+
+evidence/intervention/*
+!evidence/intervention/same-session-handoff/
+!evidence/intervention/same-session-handoff/**
+
+evidence/debug/*
+!evidence/debug/README.md
+!evidence/debug/run_fa0960ddfd33/
+!evidence/debug/run_fa0960ddfd33/**
+!evidence/debug/run_6295c514a4c6/
+!evidence/debug/run_6295c514a4c6/**
+
+# Hosted probe output until explicitly promoted to a named canonical folder.
+evidence/hosted/run_*/
+
+# Mutable runtime capability store. Canonical seeds stay tracked via negation.
+artifacts/capabilities/*
+!artifacts/capabilities/cart.add-product/
+!artifacts/capabilities/cart.add-product/v1.json
+!artifacts/capabilities/cart.add-product/v2.json
+!artifacts/capabilities/cart.add-product.hardfail/
+!artifacts/capabilities/cart.add-product.hardfail/v1.json
+!artifacts/capabilities/session.dismiss-interstitial/
+!artifacts/capabilities/session.dismiss-interstitial/v1.json

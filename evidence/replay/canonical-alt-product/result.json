@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "runId": "run_ccf42a118930",
+  "capabilityId": "cart.add-product",
+  "capabilityVersion": 2,
+  "outputs": {
+    "productName": "Sauce Labs Bike Light",
+    "cartCount": 1,
+    "inCart": true
+  }
+}

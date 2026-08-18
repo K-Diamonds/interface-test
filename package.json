@@ -1,0 +1,31 @@
+{
+  "name": "computer-use-capability-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LLM discovers UI workflows once; typed capabilities replay them deterministically",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev:api": "pnpm --filter api dev",
+    "dev:web": "pnpm --filter web dev",
+    "discover": "pnpm --filter api discover",
+    "replay": "pnpm --filter api replay",
+    "demo": "pnpm --filter api demo",
+    "demo:offline": "pnpm --filter api demo:offline",
+    "evidence:canonical": "pnpm --filter api evidence:canonical",
+    "evidence:recovery": "pnpm --filter api evidence:recovery",
+    "evidence:agent-invoke": "pnpm --filter api evidence:agent-invoke",
+    "playwright:install": "pnpm --filter api exec playwright install chromium",
+    "operator": "pnpm --filter api operator",
+    "serve": "pnpm --filter api serve",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "build": "pnpm -r build"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}

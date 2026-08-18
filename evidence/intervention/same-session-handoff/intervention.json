@@ -1,0 +1,14 @@
+{
+  "id": "int_b5b08d1bd9fe",
+  "runId": "run_6fa0e15bffbf",
+  "capabilityId": "cart.add-product",
+  "goal": "Add product to cart",
+  "stepId": "add-product",
+  "reason": "Ambiguous control / demo escalation",
+  "controller": "human",
+  "createdAt": "2026-08-16T20:32:57.690Z",
+  "screenshotPath": "evidence/discovery/run_6fa0e15bffbf/before-escalation.png",
+  "currentUrl": "https://www.saucedemo.com/",
+  "stateSummary": "Paused on login; same Playwright page retained",
+  "status": "open"
+}

@@ -1,0 +1,29 @@
+{
+  "status": "intervention_completed",
+  "runId": "run_6fa0e15bffbf",
+  "sameSession": true,
+  "urlAfterHuman": "https://www.saucedemo.com/inventory.html",
+  "humanActions": [
+    {
+      "actor": "human",
+      "timestamp": "2026-08-16T20:32:57.690Z",
+      "action": "type",
+      "target": "Username",
+      "value": "[REDACTED]"
+    },
+    {
+      "actor": "human",
+      "timestamp": "2026-08-16T20:32:57.718Z",
+      "action": "type",
+      "target": "Password",
+      "value": "[REDACTED]"
+    },
+    {
+      "actor": "human",
+      "timestamp": "2026-08-16T20:32:57.755Z",
+      "action": "click",
+      "target": "Login"
+    }
+  ],
+  "controllerAfterResume": "automation"
+}

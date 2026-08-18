@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "capability": {
+    "id": "session.dismiss-interstitial",
+    "version": 1
+  },
+  "outputs": {},
+  "runId": "run_9274b277d2b9"
+}

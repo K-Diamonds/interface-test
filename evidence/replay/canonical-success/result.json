@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "runId": "run_dc19aab86ad6",
+  "capabilityId": "cart.add-product",
+  "capabilityVersion": 2,
+  "outputs": {
+    "productName": "Sauce Labs Backpack",
+    "cartCount": 1,
+    "inCart": true
+  },
+  "llmDecisionCount": 0
+}

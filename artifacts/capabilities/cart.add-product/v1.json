@@ -1,0 +1,292 @@
+{
+  "schemaVersion": "1.0",
+  "capability": {
+    "id": "cart.add-product",
+    "name": "Add product to cart",
+    "description": "Log into SauceDemo, add a specified product to the cart, and reach the cart review page.",
+    "version": 1,
+    "status": "approved"
+  },
+  "compatibility": {
+    "appId": "saucedemo",
+    "appFamily": "saucedemo-web",
+    "appVersion": "demo",
+    "targetPatterns": [
+      "https://www.saucedemo.com/**"
+    ]
+  },
+  "contract": {
+    "inputs": [
+      {
+        "name": "productName",
+        "type": "string",
+        "required": true,
+        "description": "Visible product name to add to cart"
+      },
+      {
+        "name": "username",
+        "type": "string",
+        "required": true,
+        "description": "SauceDemo username",
+        "sensitive": false
+      },
+      {
+        "name": "password",
+        "type": "string",
+        "required": true,
+        "description": "SauceDemo password",
+        "sensitive": true
+      }
+    ],
+    "outputs": [
+      {
+        "name": "productName",
+        "type": "string",
+        "description": "Product that was added"
+      },
+      {
+        "name": "cartCount",
+        "type": "number",
+        "description": "Number of items shown in the cart badge"
+      },
+      {
+        "name": "inCart",
+        "type": "boolean",
+        "description": "Whether the product appears on the cart page"
+      }
+    ]
+  },
+  "policy": {
+    "allowedDomains": ["www.saucedemo.com", "saucedemo.com"],
+    "allowedRoutes": [
+      "^/$",
+      "^/index\\.html$",
+      "^/inventory\\.html$",
+      "^/cart\\.html$",
+      "^/inventory-item\\.html"
+    ],
+    "allowedActions": [
+      "navigate",
+      "click",
+      "type",
+      "read",
+      "wait",
+      "extract",
+      "checkpoint"
+    ],
+    "riskyActionPolicy": "require-human"
+  },
+  "steps": [
+    {
+      "id": "open-app",
+      "type": "navigate",
+      "description": "Open SauceDemo login page",
+      "url": "https://www.saucedemo.com/",
+      "checkpoint": {
+        "type": "element-visible",
+        "target": {
+          "description": "Username field",
+          "primary": { "kind": "placeholder", "text": "Username" },
+          "fallbacks": [
+            { "kind": "css", "selector": "#user-name" },
+            { "kind": "testId", "testId": "username" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "enter-username",
+      "type": "type",
+      "description": "Enter username",
+      "target": {
+        "description": "Username field",
+        "primary": { "kind": "placeholder", "text": "Username" },
+        "fallbacks": [
+          { "kind": "css", "selector": "#user-name" },
+          { "kind": "testId", "testId": "username" }
+        ]
+      },
+      "value": { "source": "input", "name": "username" }
+    },
+    {
+      "id": "enter-password",
+      "type": "type",
+      "description": "Enter password",
+      "target": {
+        "description": "Password field",
+        "primary": { "kind": "placeholder", "text": "Password" },
+        "fallbacks": [
+          { "kind": "css", "selector": "#password" },
+          { "kind": "testId", "testId": "password" }
+        ]
+      },
+      "value": { "source": "input", "name": "password" }
+    },
+    {
+      "id": "login",
+      "type": "click",
+      "description": "Click login",
+      "target": {
+        "description": "Login button",
+        "primary": { "kind": "role", "role": "button", "name": "Login" },
+        "fallbacks": [
+          { "kind": "testId", "testId": "login-button" },
+          { "kind": "css", "selector": "#login-button" }
+        ]
+      },
+      "checkpoint": {
+        "type": "url",
+        "pattern": "inventory\\.html"
+      }
+    },
+    {
+      "id": "add-product",
+      "type": "click",
+      "description": "Add requested product to cart",
+      "target": {
+        "description": "Add {{productName}} to cart",
+        "primary": {
+          "kind": "xpath",
+          "selector": "//div[contains(@class,'inventory_item')][.//div[contains(@class,'inventory_item_name') and normalize-space()='{{productName}}']]//button[contains(@data-test,'add-to-cart') or contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'add to cart')]"
+        },
+        "fallbacks": [
+          {
+            "kind": "css",
+            "selector": ".inventory_item:has(.inventory_item_name:text-is(\"{{productName}}\")) button[data-test^=\"add-to-cart\"]"
+          },
+          {
+            "kind": "xpath",
+            "selector": "//*[contains(@class,'inventory_item_name') and normalize-space()='{{productName}}']/ancestor::div[contains(@class,'inventory_item')][1]//button"
+          }
+        ]
+      },
+      "retry": {
+        "maxAttempts": 3,
+        "delayMs": 300,
+        "backoff": "fixed",
+        "retryOn": ["element_detached", "loading_delay", "stale_element"]
+      },
+      "onError": "fail",
+      "checkpoint": {
+        "type": "composite",
+        "op": "or",
+        "checks": [
+          {
+            "type": "element-text",
+            "target": {
+              "description": "Cart badge",
+              "primary": { "kind": "testId", "testId": "shopping-cart-badge" },
+              "fallbacks": [
+                { "kind": "css", "selector": ".shopping_cart_badge" }
+              ]
+            },
+            "expected": "1"
+          },
+          {
+            "type": "element-visible",
+            "target": {
+              "description": "Remove button for product",
+              "primary": { "kind": "role", "role": "button", "name": "Remove" },
+              "fallbacks": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "open-cart",
+      "type": "click",
+      "description": "Open shopping cart",
+      "target": {
+        "description": "Shopping cart link",
+        "primary": { "kind": "testId", "testId": "shopping-cart-link" },
+        "fallbacks": [
+          { "kind": "css", "selector": ".shopping_cart_link" },
+          { "kind": "role", "role": "link", "name": "Shopping Cart" }
+        ]
+      },
+      "checkpoint": {
+        "type": "url",
+        "pattern": "cart\\.html"
+      }
+    },
+    {
+      "id": "extract-outputs",
+      "type": "extract",
+      "description": "Extract cart outputs",
+      "effect": "read",
+      "risk": "low",
+      "idempotency": "read-only",
+      "outputs": [
+        {
+          "name": "productName",
+          "from": "input",
+          "inputKey": "productName",
+          "transform": "string"
+        },
+        {
+          "name": "cartCount",
+          "from": "stateHint",
+          "stateHintKey": "numericBadge",
+          "transform": "number"
+        },
+        {
+          "name": "inCart",
+          "from": "visible-text-includes",
+          "inputKey": "productName",
+          "transform": "boolean"
+        }
+      ]
+    }
+  ],
+  "successCondition": {
+    "type": "composite",
+    "op": "and",
+    "checks": [
+      { "type": "url", "pattern": "cart\\.html" },
+      {
+        "type": "element-text",
+        "target": {
+          "description": "Product in cart",
+          "primary": { "kind": "testId", "testId": "inventory-item-name" },
+          "fallbacks": [
+            { "kind": "text", "text": "{{productName}}" },
+            { "kind": "css", "selector": ".inventory_item_name" }
+          ]
+        },
+        "expected": "{{productName}}"
+      }
+    ]
+  },
+  "knownOutcomes": [
+    {
+      "code": "PRODUCT_NOT_FOUND",
+      "message": "No product matched the requested product name.",
+      "detection": {
+        "kind": "missing-target",
+        "stepId": "add-product"
+      }
+    },
+    {
+      "code": "LOGIN_FAILED",
+      "message": "Login was rejected by the application.",
+      "detection": {
+        "kind": "text-includes",
+        "text": "Epic sadface"
+      }
+    }
+  ],
+  "recoveryRules": [
+    {
+      "id": "retry-detached",
+      "when": "element_detached",
+      "action": "retry",
+      "maxAttempts": 2
+    }
+  ],
+  "metadata": {
+    "createdAt": "2026-08-16T00:00:00.000Z",
+    "discoveredFromRunId": "run_manual_seed",
+    "generatorVersion": "1.0.0"
+  }
+}

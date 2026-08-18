@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Session notice</title>
+    <style>
+      #interstitial {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+      }
+      #interstitial[hidden] { display: none; }
+      .panel { background: #fff; padding: 24px; max-width: 420px; }
+    </style>
+  </head>
+  <body>
+    <h1>Back-office batch</h1>
+    <button id="complete">Complete task</button>
+    <p id="status">Not complete</p>
+    <div id="interstitial" role="dialog" aria-label="Scheduled maintenance">
+      <div class="panel">
+        <h2>Scheduled maintenance</h2>
+        <p>A non-destructive session notice is blocking the form.</p>
+        <button id="continue">Continue to application</button>
+      </div>
+    </div>
+    <script>
+      document.getElementById("continue").addEventListener("click", () => {
+        document.getElementById("interstitial").hidden = true;
+      });
+      document.getElementById("complete").addEventListener("click", () => {
+        if (!document.getElementById("interstitial").hidden) return;
+        document.getElementById("status").textContent = "Task complete";
+      });
+    </script>
+  </body>
+</html>

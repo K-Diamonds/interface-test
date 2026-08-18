@@ -1,0 +1,8 @@
+{
+  "status": "success",
+  "runId": "run_b8732ef2949a",
+  "capabilityId": "session.dismiss-interstitial",
+  "capabilityVersion": 1,
+  "llmDecisionCount": 0,
+  "outputs": {}
+}

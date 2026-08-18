@@ -1,0 +1,5 @@
+{"timestamp":"2026-08-16T20:32:56.192Z","runId":"run_7f44b09585a3","mode":"replay","event":"run.started","summary":"Replay cart.add-product.hardfail@v1","actor":"automation"}
+{"timestamp":"2026-08-16T20:32:56.227Z","runId":"run_7f44b09585a3","mode":"replay","event":"step.attempt","stepId":"open","action":"navigate","attempt":1,"summary":"Open app","idempotency":"idempotent"}
+{"timestamp":"2026-08-16T20:32:56.455Z","runId":"run_7f44b09585a3","mode":"replay","event":"step.completed","stepId":"open","action":"navigate","durationMs":229,"actor":"automation"}
+{"timestamp":"2026-08-16T20:32:56.455Z","runId":"run_7f44b09585a3","mode":"replay","event":"step.attempt","stepId":"expect-impossible","action":"checkpoint","attempt":1,"summary":"Expect a control that does not exist","idempotency":"read-only"}
+{"timestamp":"2026-08-16T20:32:56.568Z","runId":"run_7f44b09585a3","mode":"replay","event":"run.failed","stepId":"expect-impossible","summary":"Could not read element for text checkpoint: Nonexistent banner"}

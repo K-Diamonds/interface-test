@@ -1,0 +1,9 @@
+{"timestamp":"2026-08-16T20:32:00.951Z","runId":"run_2e0e06d11a22","mode":"discovery","event":"run.started","summary":"Add Sauce Labs Backpack to the cart and reach the cart page","actor":"automation","discoveryMode":"scripted","provider":"scripted","model":"SauceDemoScriptedModel","target":"https://www.saucedemo.com"}
+{"timestamp":"2026-08-16T20:32:01.758Z","runId":"run_2e0e06d11a22","mode":"discovery","event":"agent.decision","action":"type","summary":"[scripted] Type username into the login form.","actor":"automation"}
+{"timestamp":"2026-08-16T20:32:01.936Z","runId":"run_2e0e06d11a22","mode":"discovery","event":"agent.decision","action":"type","summary":"[scripted] Type password into the login form.","actor":"automation"}
+{"timestamp":"2026-08-16T20:32:02.030Z","runId":"run_2e0e06d11a22","mode":"discovery","event":"agent.decision","action":"click","summary":"[scripted] Activate Login to open inventory.","actor":"automation"}
+{"timestamp":"2026-08-16T20:32:02.160Z","runId":"run_2e0e06d11a22","mode":"discovery","event":"agent.decision","action":"click","summary":"[scripted] Add product control for Sauce Labs Backpack.","actor":"automation"}
+{"timestamp":"2026-08-16T20:32:02.258Z","runId":"run_2e0e06d11a22","mode":"discovery","event":"agent.decision","action":"click","summary":"[scripted] Open shopping cart link.","actor":"automation"}
+{"timestamp":"2026-08-16T20:32:02.350Z","runId":"run_2e0e06d11a22","mode":"discovery","event":"agent.decision","action":"complete","summary":"[scripted] Cart page observed; product context present in goal.","actor":"automation"}
+{"timestamp":"2026-08-16T20:32:02.350Z","runId":"run_2e0e06d11a22","mode":"discovery","event":"agent.completion_accepted","summary":"Cart page visible and product text present"}
+{"timestamp":"2026-08-16T20:32:02.462Z","runId":"run_2e0e06d11a22","mode":"discovery","event":"run.completed","summary":"Capability written: capabilities/cart.add-product/v5.json"}

@@ -1,0 +1,403 @@
+{
+  "schemaVersion": "1.0",
+  "capability": {
+    "id": "cart.add-product",
+    "name": "Add Product to Cart",
+    "description": "Add the product specified by productName to the cart and reach the cart review page.",
+    "version": 2,
+    "status": "approved"
+  },
+  "compatibility": {
+    "appId": "saucedemo.com",
+    "appFamily": "saucedemo.com",
+    "targetPatterns": [
+      "https://www.saucedemo.com/**"
+    ]
+  },
+  "contract": {
+    "inputs": [
+      {
+        "name": "productName",
+        "type": "string",
+        "required": true,
+        "description": "Visible product name"
+      },
+      {
+        "name": "username",
+        "type": "string",
+        "required": true,
+        "description": "Demo login username (session bootstrap)"
+      },
+      {
+        "name": "password",
+        "type": "string",
+        "required": true,
+        "description": "Demo login password (session bootstrap)",
+        "sensitive": true
+      }
+    ],
+    "outputs": [
+      {
+        "name": "productName",
+        "type": "string",
+        "description": "Product referenced by the capability"
+      },
+      {
+        "name": "cartCount",
+        "type": "number",
+        "description": "Cart badge count"
+      },
+      {
+        "name": "inCart",
+        "type": "boolean",
+        "description": "Whether product text is visible on cart page"
+      }
+    ]
+  },
+  "policy": {
+    "allowedDomains": [
+      "www.saucedemo.com",
+      "saucedemo.com"
+    ],
+    "allowedRoutes": [
+      "^\\/$",
+      "^\\/index\\.html$",
+      "^\\/inventory\\.html$",
+      "^\\/cart\\.html$",
+      "^\\/inventory-item\\.html",
+      "^\\/checkout-step-one\\.html$",
+      "^\\/checkout-step-two\\.html$",
+      "^\\/checkout-complete\\.html$"
+    ],
+    "allowedActions": [
+      "navigate",
+      "click",
+      "type",
+      "select",
+      "read",
+      "wait",
+      "extract",
+      "checkpoint",
+      "complete",
+      "request_human"
+    ],
+    "riskyActionPolicy": "require-human"
+  },
+  "steps": [
+    {
+      "id": "step-1",
+      "description": "Open application entry URL observed during discovery",
+      "checkpoint": {
+        "type": "url",
+        "pattern": "www\\.saucedemo\\.com"
+      },
+      "risk": "low",
+      "effect": "navigation",
+      "idempotency": "idempotent",
+      "type": "navigate",
+      "url": "https://www.saucedemo.com"
+    },
+    {
+      "id": "step-2",
+      "description": "Type username into the username field to log in.",
+      "risk": "low",
+      "effect": "data-entry",
+      "idempotency": "idempotent",
+      "type": "type",
+      "target": {
+        "description": "user-name",
+        "primary": {
+          "kind": "role",
+          "role": "textbox",
+          "name": "user-name",
+          "exact": false
+        },
+        "fallbacks": [
+          {
+            "kind": "testId",
+            "testId": "username"
+          },
+          {
+            "kind": "placeholder",
+            "text": "Username"
+          },
+          {
+            "kind": "label",
+            "text": "user-name"
+          },
+          {
+            "kind": "css",
+            "selector": "#user-name"
+          }
+        ],
+        "expected": {
+          "role": "textbox",
+          "tag": "input",
+          "inputType": "text"
+        }
+      },
+      "value": {
+        "source": "input",
+        "name": "username"
+      }
+    },
+    {
+      "id": "step-3",
+      "description": "Type standard password into the password field to log in.",
+      "risk": "low",
+      "effect": "data-entry",
+      "idempotency": "idempotent",
+      "type": "type",
+      "target": {
+        "description": "password",
+        "primary": {
+          "kind": "role",
+          "role": "textbox",
+          "name": "password",
+          "exact": false
+        },
+        "fallbacks": [
+          {
+            "kind": "testId",
+            "testId": "password"
+          },
+          {
+            "kind": "placeholder",
+            "text": "Password"
+          },
+          {
+            "kind": "label",
+            "text": "password"
+          },
+          {
+            "kind": "css",
+            "selector": "#password"
+          }
+        ],
+        "expected": {
+          "role": "textbox",
+          "tag": "input",
+          "inputType": "password"
+        }
+      },
+      "value": {
+        "source": "input",
+        "name": "password"
+      }
+    },
+    {
+      "id": "step-4",
+      "description": "Click the login button to authenticate and navigate to the inventory page.",
+      "checkpoint": {
+        "type": "url",
+        "pattern": "inventory\\.html"
+      },
+      "risk": "low",
+      "effect": "reversible-mutation",
+      "idempotency": "idempotent",
+      "type": "click",
+      "target": {
+        "description": "login-button",
+        "primary": {
+          "kind": "role",
+          "role": "button",
+          "name": "login-button",
+          "exact": false
+        },
+        "fallbacks": [
+          {
+            "kind": "testId",
+            "testId": "login-button"
+          },
+          {
+            "kind": "label",
+            "text": "login-button"
+          },
+          {
+            "kind": "css",
+            "selector": "#login-button"
+          },
+          {
+            "kind": "css",
+            "selector": "input[name=\"login-button\"]"
+          }
+        ],
+        "expected": {
+          "role": "button",
+          "tag": "input",
+          "inputType": "submit"
+        }
+      }
+    },
+    {
+      "id": "step-5",
+      "description": "Click 'Add to cart' button for Sauce Labs Backpack.",
+      "checkpoint": {
+        "type": "element-visible",
+        "target": {
+          "description": "Cart badge after add",
+          "primary": {
+            "kind": "css",
+            "selector": ".shopping_cart_badge"
+          },
+          "fallbacks": [
+            {
+              "kind": "testId",
+              "testId": "shopping-cart-badge"
+            },
+            {
+              "kind": "role",
+              "role": "button",
+              "name": "Remove"
+            }
+          ]
+        }
+      },
+      "onError": "fail",
+      "risk": "low",
+      "effect": "reversible-mutation",
+      "idempotency": "idempotent",
+      "type": "click",
+      "target": {
+        "description": "Add {{productName}} to cart",
+        "primary": {
+          "kind": "xpath",
+          "selector": "//div[contains(@class,'inventory_item')][.//div[contains(@class,'inventory_item_name') and normalize-space()='{{productName}}']]//button[contains(@data-test,'add-to-cart') or contains(.,'Add')]"
+        },
+        "fallbacks": [
+          {
+            "kind": "css",
+            "selector": ".inventory_item:has(.inventory_item_name:text-is(\"{{productName}}\")) button[data-test^=\"add-to-cart\"]"
+          },
+          {
+            "kind": "xpath",
+            "selector": "//*[contains(@class,'inventory_item_name') and normalize-space()='{{productName}}']/ancestor::div[contains(@class,'inventory_item')][1]//button"
+          }
+        ]
+      }
+    },
+    {
+      "id": "step-6",
+      "description": "Click on the shopping cart link to navigate to the cart review page.",
+      "checkpoint": {
+        "type": "url",
+        "pattern": "cart\\.html"
+      },
+      "risk": "low",
+      "effect": "reversible-mutation",
+      "idempotency": "idempotent",
+      "type": "click",
+      "target": {
+        "description": "1",
+        "primary": {
+          "kind": "role",
+          "role": "link",
+          "name": "1",
+          "exact": false
+        },
+        "fallbacks": [
+          {
+            "kind": "testId",
+            "testId": "shopping-cart-link"
+          },
+          {
+            "kind": "text",
+            "text": "1",
+            "exact": false
+          }
+        ],
+        "expected": {
+          "role": "link",
+          "text": "1",
+          "tag": "a"
+        }
+      }
+    },
+    {
+      "id": "step-7",
+      "description": "Extract typed outputs declared by the discovery contract",
+      "risk": "low",
+      "effect": "read",
+      "idempotency": "read-only",
+      "type": "extract",
+      "outputs": [
+        {
+          "name": "productName",
+          "from": "input",
+          "inputKey": "productName",
+          "transform": "string"
+        },
+        {
+          "name": "cartCount",
+          "from": "count",
+          "target": {
+            "description": "Cart badge",
+            "primary": {
+              "kind": "css",
+              "selector": ".shopping_cart_badge"
+            },
+            "fallbacks": [
+              {
+                "kind": "testId",
+                "testId": "shopping-cart-badge"
+              }
+            ]
+          },
+          "transform": "number"
+        },
+        {
+          "name": "inCart",
+          "from": "visible-text-includes",
+          "inputKey": "productName",
+          "transform": "boolean"
+        }
+      ]
+    }
+  ],
+  "successCondition": {
+    "type": "composite",
+    "op": "and",
+    "checks": [
+      {
+        "type": "url",
+        "pattern": "cart\\.html"
+      },
+      {
+        "type": "element-text",
+        "target": {
+          "description": "Product text on page",
+          "primary": {
+            "kind": "text",
+            "text": "{{productName}}"
+          },
+          "fallbacks": [
+            {
+              "kind": "css",
+              "selector": ".inventory_item_name"
+            },
+            {
+              "kind": "testId",
+              "testId": "inventory-item-name"
+            }
+          ]
+        },
+        "expected": "{{productName}}"
+      }
+    ]
+  },
+  "knownOutcomes": [
+    {
+      "code": "PRODUCT_NOT_FOUND",
+      "message": "No product matched the requested product name.",
+      "detection": {
+        "kind": "missing-target",
+        "stepId": "step-5"
+      }
+    }
+  ],
+  "metadata": {
+    "createdAt": "2026-08-17T20:33:27.519Z",
+    "discoveredFromRunId": "run_0ff1e4fec530",
+    "generatorVersion": "1.0.0"
+  }
+}

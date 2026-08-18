@@ -1,0 +1,9 @@
+{
+  "mode": "replay",
+  "llmDecisionCount": 0,
+  "discoveryRunId": "run_0ff1e4fec530",
+  "replayRunId": "run_dc19aab86ad6",
+  "capabilityId": "cart.add-product",
+  "capabilityVersion": 2,
+  "status": "success"
+}

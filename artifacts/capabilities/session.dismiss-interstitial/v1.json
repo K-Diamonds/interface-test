@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0",
+  "capability": {
+    "id": "session.dismiss-interstitial",
+    "name": "Dismiss known interstitial then complete",
+    "description": "Deterministic recovery of a known session notice, then complete the task.",
+    "version": 1,
+    "status": "approved"
+  },
+  "compatibility": {
+    "appId": "local-fixture",
+    "appFamily": "fixture",
+    "targetPatterns": ["http://127.0.0.1/**", "http://localhost/**"]
+  },
+  "contract": {
+    "inputs": [
+      {
+        "name": "baseUrl",
+        "type": "string",
+        "required": true,
+        "description": "Origin serving the interstitial fixture"
+      }
+    ],
+    "outputs": []
+  },
+  "policy": {
+    "allowedDomains": ["127.0.0.1", "localhost"],
+    "allowedActions": ["navigate", "click", "checkpoint"],
+    "riskyActionPolicy": "require-human"
+  },
+  "steps": [
+    {
+      "id": "open",
+      "type": "navigate",
+      "description": "Open the batch form",
+      "url": "{{baseUrl}}/recoverable-interstitial.html",
+      "effect": "navigation",
+      "risk": "low",
+      "idempotency": "idempotent",
+      "checkpoint": {
+        "type": "url",
+        "pattern": "recoverable-interstitial\\.html"
+      }
+    },
+    {
+      "id": "complete",
+      "type": "click",
+      "description": "Complete the batch task",
+      "effect": "reversible-mutation",
+      "risk": "low",
+      "idempotency": "idempotent",
+      "target": {
+        "description": "Complete task",
+        "primary": { "kind": "role", "role": "button", "name": "Complete task" },
+        "fallbacks": [{ "kind": "text", "text": "Complete task" }]
+      },
+      "checkpoint": {
+        "type": "element-text",
+        "target": {
+          "description": "Status",
+          "primary": { "kind": "text", "text": "Task complete" },
+          "fallbacks": []
+        },
+        "expected": "Task complete"
+      }
+    }
+  ],
+  "successCondition": {
+    "type": "element-text",
+    "target": {
+      "description": "Status",
+      "primary": { "kind": "text", "text": "Task complete" },
+      "fallbacks": []
+    },
+    "expected": "Task complete"
+  },
+  "knownOutcomes": [],
+    "recoveryRules": [
+    {
+      "id": "dismiss-session-notice",
+      "when": "known_interstitial",
+      "action": "dismiss-dialog",
+      "maxAttempts": 1,
+      "effect": "reversible-mutation",
+      "risk": "low",
+      "target": {
+        "description": "Continue to application",
+        "primary": {
+          "kind": "role",
+          "role": "button",
+          "name": "Continue to application"
+        },
+        "fallbacks": [{ "kind": "text", "text": "Continue to application" }]
+      }
+    }
+  ],
+  "metadata": {
+    "createdAt": "2026-08-18T00:00:00.000Z",
+    "discoveredFromRunId": "fixture",
+    "generatorVersion": "1.0.0"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "mode": "discovery",
+  "discoveryMode": "llm",
+  "provider": "gemini",
+  "model": "gemini-flash-latest",
+  "runId": "run_0ff1e4fec530",
+  "goal": "Add the product specified by productName to the cart and reach the cart review page.",
+  "target": "https://www.saucedemo.com",
+  "timestamp": "2026-08-17T20:33:29.506Z",
+  "status": "success",
+  "capabilityId": "cart.add-product",
+  "capabilityVersion": 2,
+  "capabilityPath": "artifacts/capabilities/cart.add-product/v2.json",
+  "replayRunId": "run_dc19aab86ad6",
+  "discoveredFromRunId": "run_0ff1e4fec530",
+  "parameterizationRunId": "run_ccf42a118930",
+  "businessOutcomeRunId": "run_222491fd300e"
+}

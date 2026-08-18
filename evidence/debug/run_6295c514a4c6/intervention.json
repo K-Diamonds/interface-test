@@ -1,0 +1,12 @@
+{
+  "id": "int_fd57a99ecc83",
+  "runId": "run_6295c514a4c6",
+  "goal": "Add the product specified by productName to the cart and reach the cart review page.",
+  "reason": "unknown / high risk requires human confirmation",
+  "controller": "human",
+  "createdAt": "2026-08-17T20:31:21.865Z",
+  "screenshotPath": "evidence/debug/run_6295c514a4c6/before-escalation.png",
+  "currentUrl": "https://www.saucedemo.com/inventory.html",
+  "stateSummary": "unknown / high risk requires human confirmation",
+  "status": "open"
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hostile ledger</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>
+          <div>
+            <span>Invoice 1042</span>
+            <div><div><button>Submit</button></div></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div>
+            <span>Invoice 2099</span>
+            <div><div><button>Submit</button></div></div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <p id="chosen">none</p>
+    <script>
+      const rows = document.querySelectorAll("tr");
+      rows[0].querySelector("button").addEventListener("click", () => {
+        document.getElementById("chosen").textContent = "1042";
+      });
+      rows[1].querySelector("button").addEventListener("click", () => {
+        document.getElementById("chosen").textContent = "2099";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "mode": "replay",
+  "llmDecisionCount": 0,
+  "discoveryRunId": "run_0ff1e4fec530",
+  "replayRunId": "run_ccf42a118930",
+  "capabilityId": "cart.add-product",
+  "capabilityVersion": 2,
+  "inputs": {
+    "productName": "Sauce Labs Bike Light"
+  },
+  "status": "success"
+}
